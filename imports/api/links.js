@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
+import shortid from 'shortid';
 
 export const Links = new Mongo.Collection('links');
 
@@ -25,8 +26,32 @@ Meteor.methods({
         }).validate( { url } );
 
         Links.insert({
+            _id: shortid.generate(),
             url,
+            userId: this.userId,
+            visible: true
+        });
+    },
+    'links.setVisibility'(_id, visible) {
+        if (!this.userId) {
+            throw new Meteor.Error('not-authenticated');
+        }
+
+        new SimpleSchema({
+            _id: {
+                type: String,
+                min: 1
+            },
+            visible: {
+                type: Boolean
+            }
+        }).validate( { _id, visible });
+
+        Links.update({
+            _id,
             userId: this.userId
+        }, {
+            $set: { visible }
         });
     }
 });
