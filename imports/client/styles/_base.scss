@@ -14,7 +14,20 @@
 
   h1 {
       font-weight: 300;
-      margin-bottom: 1.45rem;
+      margin-bottom: $space;
+  }
+
+  h2 {
+    margin-bottom: $space;
+    font-size: $large-font-size;
+  }
+
+  p {
+    margin-bottom: $space;
+  }
+
+  input {
+    margin-bottom: $space;
   }
 
   a {
@@ -22,8 +35,8 @@
   }
 
   input[type=text], input[type=email], input[type=password] {
-    border: 1px solid #dddddd;  
+    border: 1px solid $input-border;  
     font-size: $base-font-size;
-    margin-bottom: 1.4rem;
-    padding: 1rem;
+    margin-bottom: 1$space;
+    padding: $input-spacing;
   }

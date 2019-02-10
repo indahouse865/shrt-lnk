@@ -55,6 +55,9 @@ export const baseRouter = (
                 <Link/>
                 )
             )}/>
+            <Route exact path="/login" render={() => (
+                <Redirect to="/"/>
+            )}/>
             <Route path="*" component={NotFound}/>
         </Switch>
     </Router>
